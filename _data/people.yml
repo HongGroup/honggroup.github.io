@@ -80,14 +80,4 @@ current_members:
   email: 12537054@zju.edu.cn
   category: current_team_members
 past_members:
-- id: wangwu
-  name: 王五
-  en_name: Mike Johnson
-  position: 前博士研究生
-  en_position: Former PhD Student
-  category: past_team_members
-  research_interests: 数据挖掘
-  en_research_interests: Data Mining
-  current_position: 腾讯高级工程师
-  en_current_position: Senior Engineer at Tencent
-  graduation_year: 2023
+
