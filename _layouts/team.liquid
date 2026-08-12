@@ -1,0 +1,92 @@
+﻿---
+layout: default
+---
+
+{% comment %} 1. 核心配置：使用网站默认的语言设置 {% endcomment %}
+{% assign is_default_lang = (site.active_lang == site.default_lang) %}
+{% comment %} 2. 分类配置：对应 _data/people.yml 的顶级key {% endcomment %}
+{% assign team_categories = "supervisor,current_members,past_members" | split: "," %}
+{% assign category_titles = "导师,现有组员,往届组员" | split: "," %}
+{% assign category_en_titles = "Supervisor,Current Members,Past Members" | split: "," %}
+
+<div class="container mt-5 mb-8">
+  <h1 class="text-center mb-7">{{ page.title | default: site.data[site.active_lang].strings.team_members }}</h1>
+  
+  {% comment %} 3. 循环渲染每个分类 {% endcomment %}
+  {% for i in (0..2) %}
+    {% assign category_key = team_categories[i] %}
+    {% assign members = site.data.people[category_key] %}
+    {% if members and members.size > 0 %}
+      <h2 class="text-center mb-5 fw-bold">
+        {% if site.active_lang == "zh-cn" %}
+          {{ category_titles[i] }}
+        {% else %}
+          {{ category_en_titles[i] }}
+        {% endif %}
+      </h2>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5 mb-10">
+        {% for person in members %}
+          {% comment %} 5. 双语字段：仅保留 姓名、职位、邮箱 {% endcomment %}
+          {% if site.active_lang == "zh-cn" %}
+            {% assign person_name = person.name | default: person.en_name %}
+            {% assign person_position = person.position | default: person.en_position %}
+          {% else %}
+            {% assign person_name = person.en_name | default: person.name %}
+            {% assign person_position = person.en_position | default: person.position %}
+          {% endif %}
+          {% assign person_email = person.email | default: "" %}
+
+          {% comment %} 6. 图片路径 {% endcomment %}
+          {% assign img_filename = person.id | append: ".png" %}
+          {% assign img_path = "/assets/img/people/" | append: img_filename | relative_url %}
+          {% assign default_img_path = "/assets/img/people/default.png" | relative_url %}
+
+          <div class="col">
+            <div class="card h-100 border-0 shadow-sm rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <a href="{% if is_default_lang %}{{ "/people/" | append: person.id | append: "/" | relative_url }}{% else %}{{ "/" | append: site.active_lang | append: "/people/" | append: person.id | append: "/" | relative_url }}{% endif %}"
+                 class="text-decoration-none text-dark d-flex flex-column h-100">
+                
+                <div class="card-body text-center p-5 d-flex flex-column justify-content-center">
+                  {% comment %} 头像 {% endcomment %}
+                  <div class="mb-4 d-flex justify-content-center">
+                    <img 
+                      src="{{ img_path }}" 
+                      onerror="this.onerror=null; this.src='{{ default_img_path }}';"
+                      alt="{{ person_name }}" 
+                      class="rounded-circle"
+                      style="width: 160px; height: 160px; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);"
+                      loading="lazy"
+                    >
+                  </div>
+                  {% comment %} 姓名 {% endcomment %}
+                  <h5 class="card-title mb-2 font-weight-bold">{{ person_name }}</h5>
+                  {% comment %} 职位 {% endcomment %}
+                  <p class="card-text text-muted mb-3">{{ person_position }}</p>
+                  {% comment %} 新增：邮箱显示 {% endcomment %}
+                  {% if person_email != "" %}
+                    <p class="card-text text-sm text-muted mb-0">
+                      {{ person_email }}
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% comment %} 基础样式 {% endcomment %}
+<style>
+  .transition-all { transition-property: all; }
+  .duration-300 { transition-duration: 0.3s; }
+  .hover\:shadow-xl:hover { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); }
+  .hover\:-translate-y-2:hover { transform: translateY(-2px); }
+  .g-5 { gap: 3rem; }
+  .card-title { font-size: 1.1rem; }
+  .card-body.text-center { text-align: center !important; }
+  .d-flex.justify-content-center { justify-content: center !important; }
+</style>

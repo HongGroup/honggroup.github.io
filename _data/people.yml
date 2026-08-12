@@ -1,0 +1,93 @@
+supervisor:
+- id: hongxin
+  name: 洪鑫
+  en_name: Hong Xin
+  position: 副教授、博士生导师
+  en_position: Associate Professor, PhD Supervisor
+  image: hongxin.png
+  category: supervisor
+current_members:
+- id: sunyizhou
+  name: 孙一舟
+  en_name: Yi-Zhou Sun
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 机器学习
+  en_research_interests: Machine Learning
+  email: 3220103820@zju.edu.cn
+  category: current_team_members
+- id: yuchang
+  name: 俞塽
+  en_name: Chang Yu
+  position: 硕士研究生
+  en_position: postgraduate
+  research_interests: 机器学习
+  en_research_interests: Machine Learning
+  email: shuangyu@zju.edu.cn
+  category: current_team_members
+- id: qgl
+  name: 钱甘露
+  en_name: Gan-Lu Qian
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 不对称催化
+  en_research_interests: asymmetric catalysis
+  email: qgl@zju.edu.cn
+  category: current_team_members
+- id: rkwu
+  name: 吴镕凯
+  en_name: Rong-Kai Wu
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 有机机理计算
+  en_research_interests: Organic mechanism calculation
+  email: rk_wu@zju.edu.cn
+  category: current_team_members
+- id: zhangshuoqing
+  name: 张硕卿
+  en_name: Shuo-Qing Zhang
+  position: 助理研究员
+  en_position: Assistant Researcher
+  research_interests: AI4Chem and PhysOrg
+  en_research_interests: AI4Chem and PhysOrg
+  email: angellasty@zju.edu.cn
+  category: current_team_members
+- id: liuligao
+  name: 刘立高
+  en_name: Li-Gao Liu
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 酸催化炔酰胺不对称转化的理论研究
+  en_research_interests: Theoretical Study on Acid-Catalyzed Asymmetric Transformation of Acrylamides
+  email: chemlgliu@stu.xmu.edu.cn
+  category: current_team_members
+- id: tangmiaojiong
+  name: 汤缪炅
+  en_name: Miao-Jiong Tang
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 机器学习
+  en_research_interests: Machine Learning
+  email: mj_t@zju.edu.cn
+  category: current_team_members
+- id: zhudexin
+  name: 朱德鑫
+  en_name: De-Xin Zhu
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 机器学习
+  en_research_interests: Machine Learning
+  email: 12537054@zju.edu.cn
+  category: current_team_members
+past_members:
+- id: wangwu
+  name: 王五
+  en_name: Mike Johnson
+  position: 前博士研究生
+  en_position: Former PhD Student
+  category: past_team_members
+  research_interests: 数据挖掘
+  en_research_interests: Data Mining
+  current_position: 腾讯高级工程师
+  en_current_position: Senior Engineer at Tencent
+  graduation_year: 2023

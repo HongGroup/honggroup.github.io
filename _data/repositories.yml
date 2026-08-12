@@ -1,0 +1,12 @@
+github_users:
+
+repo_description_lines_max: 2
+
+github_repos:
+  - HongGroup/NNdioxide-asymMichael
+  - HongGroup/qm9star_query
+  - HongGroup/SyntheticSpacePrediction
+  - HongGroup/HAT-ReactivityPredictor
+  - HongGroup/SPMS
+  - HongGroup/AHO
+  - HongGroup/ChemSelML

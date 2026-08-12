@@ -1,0 +1,32 @@
+<div class="events-preview">
+  {% if site.events != blank %}
+    <!-- Bootstrap 网格：电脑3张 / 平板2张 / 手机1张 -->
+    <div class="row g-4">
+      {% assign events = site.events | reverse %}
+      {% for item in events %}
+        <div class="col-lg-4 col-md-6 col-12">
+          <!-- 点击跳转 → 活动详情页 -->
+          <a href="{{ item.url | relative_url }}" class="text-decoration-none text-dark">
+            <!-- 活动缩略图 -->
+            <div class="card border-0">
+              <img 
+                src="{{ item.img | relative_url }}" 
+                alt="{{ item.title }}"
+                class="card-img-top rounded"
+                style="height: 220px; object-fit: cover;"
+                loading="lazy"
+              >
+              <!-- 图片下方活动名称 -->
+              <div class="card-body p-2 text-center">
+                <h6 class="mb-0">{{ item.title }}</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <!-- 无活动提示 -->
+    <p class="text-center text-muted">{{ site.data[site.active_lang].strings.no_events | default: "暂无活动" }}</p>
+  {% endif %}
+</div>

@@ -1,0 +1,53 @@
+- title: General Information
+  type: map
+  contents:
+    - name: Full Name
+      value: Xin Hong
+    - name: Date of Birth
+      value: 
+    - name: Languages
+      value: 
+
+- title: Education
+  type: time_table
+  contents:
+    - title: Ph.D.
+      institution: University of California Los Angeles, Los Angeles, CA, US
+      year: 2010-09 to 2014-06
+      description:
+        - Chemistry
+
+- title: Experience
+  type: time_table
+  contents:
+    - title: Assistant Professor
+      institution: Zhejiang University, Hangzhou, Zhejiang, CN
+      year: 2016-06 to present
+      description:
+        - Chemistry
+    - title: Postdoc
+      institution: Stanford University, Stanford, CA, US
+      year: 2015-06 to 2016-06
+      description:
+        - Chemical Engineering
+    - title: Postdoc
+      institution: University of California Los Angeles, Los Angeles, CA, US
+      year: 2014-06 to 2015-06
+      description:
+        - Chemistry and Biochemistry
+
+- title: Open Source Projects
+  type: time_table
+  contents: []
+
+- title: Honors and Awards
+  type: time_table
+  contents: []
+
+- title: Academic Interests
+  type: nested_list
+  contents: []
+
+- title: Other Interests
+  type: list
+  contents: []
