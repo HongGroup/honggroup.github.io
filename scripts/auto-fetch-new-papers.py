@@ -124,12 +124,16 @@ def load_existing_papers():
 
                 if doi not in doi_author_map:
                     doi_author_map[doi] = {"cn": set(), "en": set()}
-                cn_name = row.get("name", "").strip()
-                en_name = row.get("en_name", "").strip()
-                if cn_name:
-                    doi_author_map[doi]["cn"].add(cn_name)
-                if en_name:
-                    doi_author_map[doi]["en"].add(en_name)
+                # 兼容旧数据：把已拼接的作者名按分隔符拆成单个名字，
+                # 避免把整串（如“张硕卿、张硕卿、…和汤缪炅×N”）当成一个作者反复拼接
+                for part in re.split(r"[、，,和]+", row.get("name", "").strip()):
+                    part = part.strip()
+                    if part:
+                        doi_author_map[doi]["cn"].add(part)
+                for part in re.split(r"[、，,]\s*|\s+and\s+", row.get("en_name", "").strip()):
+                    part = part.strip()
+                    if part:
+                        doi_author_map[doi]["en"].add(part)
 
         print(f"{Log.GREEN}✅ 加载旧数据：{len(paper_records)} 条（fetch_time 已保留）{Log.RESET}")
     except Exception as e:
