@@ -79,5 +79,22 @@ current_members:
   en_research_interests: Machine Learning
   email: 12537054@zju.edu.cn
   category: current_team_members
-past_members:
-
+- id: Flowise
+  name: 刘睿
+  en_name: Rui Liu
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 酶催化分子动力学模拟
+  en_research_interests: Enzyme-catalyzed Molecular Dynamics Simulation
+  email: lrliurui@zju.edu.cn
+  category: current_team_members
+- id: sunronghui
+  name: 孙榕徽
+  en_name: Sun Rong-Hui
+  position: 博士研究生
+  en_position: PhD Student
+  research_interests: 机器学习
+  en_research_interests: Machine Learning
+  email: 12537055@zju.edu.cn
+  category: current_team_members
+past_members: []

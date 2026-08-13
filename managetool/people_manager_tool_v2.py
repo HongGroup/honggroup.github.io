@@ -151,11 +151,18 @@ class PeopleManageGUI:
                 self.people_data = yaml.safe_load(f) or {cat: [] for cat in CATEGORIES}
             # 补充分类（仅当分类缺失时添加空列表，不修改原有条目）
             for cat in CATEGORIES:
-                if cat not in self.people_data:
+                if self.people_data.get(cat) is None:
                     self.people_data[cat] = []
             self._update_id_listbox()
         except Exception as e:
             messagebox.showerror("错误", f"读取yml失败：{str(e)}")
+
+    def _normalize_categories(self, data):
+        """确保每个分类都是列表：分类缺失或为None时补成空列表"""
+        for cat in CATEGORIES:
+            if data.get(cat) is None:
+                data[cat] = []
+        return data
 
     def _update_id_listbox(self):
         """更新ID列表，仅显示当前分类原有ID"""
@@ -243,6 +250,7 @@ class PeopleManageGUI:
         with open(self.yml_path, "r", encoding="utf-8") as f:
             original_yml = yaml.safe_load(f) or {cat: [] for cat in CATEGORIES}
         # 查找目标条目，存在则更新，不存在则追加（在原有分类后）
+        original_yml = self._normalize_categories(original_yml)
         updated = False
         for idx, p in enumerate(original_yml[current_cat]):
             if p.get("id") == self.current_selected_id:
@@ -320,7 +328,7 @@ permalink: {permalink}
                 messagebox.showwarning("警告", "唯一ID不能为空！")
                 return
             # 检查ID是否重复（所有分类）
-            if any(p.get("id") == new_id for cat in CATEGORIES for p in self.people_data.get(cat, [])):
+            if any(p.get("id") == new_id for cat in CATEGORIES for p in (self.people_data.get(cat) or [])):
                 messagebox.showwarning("警告", f"ID[{new_id}]已存在，请勿重复！")
                 return
             # 获取当前分类
@@ -339,7 +347,7 @@ permalink: {permalink}
 
             # ========== 新增核心：仅追加到当前分类最后，不修改原有YAML ==========
             with open(self.yml_path, "r", encoding="utf-8") as f:
-                original_yml = yaml.safe_load(f) or {cat: [] for cat in CATEGORIES}
+                original_yml = self._normalize_categories(yaml.safe_load(f) or {cat: [] for cat in CATEGORIES})
             original_yml[current_cat].append(new_person_filtered)  # 追加到分类末尾
             # 写入yml（格式标准化，保留原有内容）
             with open(self.yml_path, "w", encoding="utf-8") as f:
